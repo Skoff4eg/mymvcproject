@@ -1,6 +1,8 @@
 <?php
 include "models/Database.php";
-$object = new Database;
-$object->connectToDb();
+include "models/Select.php";
+$data = new Select("users");
+$resul = $data->getAllData();
+print_r ($resul);
 
 ?>
