@@ -23,6 +23,20 @@ class Select extends Database {
         }
         return $data;
     }
+	function getDataWithParametrs($params)
+    {
+    	$query = "Select * from $this->tabname WHERE ";
+        foreach ($params as $keys => $values) {
+            $query .= "$keys = '$values' AND ";
+        }
+        $query = substr($query, 0,-4);
+        if($sql = mysql_query($query)){
+            for ($i=0; $i < mysql_num_rows($sql); $i++) { 
+                $data[$i] = mysql_fetch_array($sql);
+            }
+        }
+        return $data;
+    }
 }
 
 ?>
